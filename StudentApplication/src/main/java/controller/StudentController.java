@@ -87,6 +87,46 @@ public class StudentController extends HttpServlet {
 			StudentDao.addStandard(s);
 			response.sendRedirect("standard.jsp");
 		}
+				
+		else if(action.equalsIgnoreCase("editStandard")){
+			int id = Integer.parseInt(request.getParameter("id"));
+			Standard s = new Standard();
+			s.setName(request.getParameter("name"));
+			s.setStatus(request.getParameter("status"));
+			
+			StudentDao.editStandard(s,id);
+			response.sendRedirect("standard.jsp");
+		}
+		
+		else if(action.equalsIgnoreCase("editStudent")) {
+			String savePath = "D:\\eclipse-workspace5\\StudentApplication\\src\\main\\webapp\\img";
+			File fileSaveDir = new File(savePath);
+			if (!fileSaveDir.exists()) {
+				fileSaveDir.mkdir();
+			}
+			Part file1 = request.getPart("image");
+			String fileName = extractfilename(file1);
+			file1.write(savePath + File.separator + fileName);
+			String filePath = savePath + File.separator + fileName;
+	
+			String savePath2 = "D:\\eclipse-workspace5\\StudentApplication\\src\\main\\webapp\\img";
+			File imgSaveDir = new File(savePath2);
+			if (!imgSaveDir.exists()) {
+				imgSaveDir.mkdir();
+			}
+			
+			Student s = new Student();
+			int sid = Integer.parseInt(request.getParameter("sid"));
+			s.setId(Integer.parseInt(request.getParameter("id")));			
+			s.setFname(request.getParameter("fname"));
+			s.setLname(request.getParameter("lname"));
+			s.setDob(request.getParameter("dob"));
+			s.setImage(fileName);
+			s.setCreatedDate(request.getParameter("createdDate"));
+			s.setStatus(request.getParameter("status"));
+			StudentDao.editStudent(s,sid);
+			response.sendRedirect("student.jsp");
+		}
 	}
 
 	String extractfilename(Part part) {
