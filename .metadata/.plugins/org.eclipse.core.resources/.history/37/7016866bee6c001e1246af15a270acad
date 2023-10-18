@@ -1,0 +1,17 @@
+package dao;
+
+import java.util.List;
+
+import model.Standard;
+
+public class StudentDao {
+
+	public static List<Standard> getStandardList(){
+		try {
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return listStandard;
+	}
+}	

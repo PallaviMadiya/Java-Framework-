@@ -1,0 +1,48 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@page import="dao.StudentDao"%>
+<%@page import="model.Standard"%>
+<%@page import="java.util.*"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Index Page</title>
+</head>
+<body>
+<%@include file="header.jsp" %>
+<!--/banner-->
+        <div class="banner-wthree-info container">
+            <div class="row shop-wthree-info text-center">
+                <div class="col-lg-3 shop-info-grid text-center mt-4">
+                    <div class="product-shoe-info shoe">
+                        <div class="men-thumb-item">
+                            <img src="images/b1.jpg" class="img-fluid" alt="">
+
+                        </div>
+                        <div class="item-info-product">
+                            <h4>
+                                <a href="single.html">Messenger Bag </a>
+                            </h4>
+
+                            <div class="product_price">
+                                <div class="grid-price">
+                                    <span class="money"><span class="line">$799</span> $675.00</span>
+                                </div>
+                            </div>
+                            <ul class="stars">
+                                <li><a href="#"><span class="fa fa-star" aria-hidden="true"></span></a></li>
+                                <li><a href="#"><span class="fa fa-star" aria-hidden="true"></span></a></li>
+                                <li><a href="#"><span class="fa fa-star-half-o" aria-hidden="true"></span></a></li>
+                                <li><a href="#"><span class="fa fa-star-half-o" aria-hidden="true"></span></a></li>
+                                <li><a href="#"><span class="fa fa-star-o" aria-hidden="true"></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+   
+</body>
+</html>

@@ -1,0 +1,47 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@page import="dao.StudentDao"%>
+<%@page import="model.Student"%>
+<%@page import="java.util.*"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Student List</title>
+</head>
+<body>
+<%@include file="header.jsp" %>
+<!--/banner-->
+	<%List<Student> list = StudentDao.getStudentList(); %>
+	
+	<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">S_ID</th>
+      <th scope="col">Standard</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">DOB</th>
+      <th scope="col">Status</th>
+      <th scope="col">Image</th>
+    </tr>
+  </thead>
+  <tbody>
+  <%for(Student s: list){ %>
+    <tr>
+      <th scope="row" ><%=s.getSid() %></th>
+      <%String std = StudentDao.getStandardById(s.getId()); %>
+      <td><%=std %></td>
+      <td><%=s.getFname() %></td>
+      <td><%=s.getLname() %></td>
+      <td><%=s.getDob() %></td>
+      <td><%=s.getStatus() %></td>
+      <td><img height="100px" weight="100px" src="img/<%=s.getImage() %>" /></td>
+    </tr>
+    <%} %>
+  </tbody>
+</table>
+      
+</body>
+</html>

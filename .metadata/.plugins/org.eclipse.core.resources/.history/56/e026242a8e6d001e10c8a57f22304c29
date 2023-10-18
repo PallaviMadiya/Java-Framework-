@@ -1,0 +1,98 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import connection.DBConnection;
+import model.Standard;
+import model.Student;
+
+public class StudentDao {
+
+	public static List<Standard> getStandardList(){
+		List<Standard> listStandard= new ArrayList<Standard>();
+		try {
+			Connection conn =  DBConnection.createConnection();
+			String sql = "SELECT * FROM standard";
+			PreparedStatement pst = conn.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			while(rs.next()) {
+				Standard s = new Standard();
+				s.setId(rs.getInt("id"));
+				s.setName(rs.getString("name"));
+				s.setStatus(rs.getString("status"));
+				listStandard.add(s);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return listStandard;
+	}
+
+	public static void addStudent(Student s) {
+		try {
+			Connection conn = DBConnection.createConnection();
+			String sql = "INSERT INTO student(id, fname, lname, dob, image, createdDate, status) VALUES(?,?,?,?,?,?,?)";
+			PreparedStatement pst = conn.prepareStatement(sql);
+			pst.setInt(1, s.getId());
+			pst.setString(2, s.getFname());
+			pst.setString(3, s.getLname());
+			pst.setString(4, s.getDob());
+			pst.setString(5, s.getImage());
+			pst.setString(6, s.getCreatedDate());
+			pst.setString(7, s.getStatus());
+			pst.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static List<Student> getStudentList(){
+		List<Student> studentList = new ArrayList<Student>();
+		try {
+			Connection conn = DBConnection.createConnection();
+			String sql = "SELECT * FROM student";
+			PreparedStatement pst = conn.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			while(rs.next()) {
+				Student s = new Student();
+				s.setSid(rs.getInt("sid"));
+				s.setId(rs.getInt("id"));
+				s.setFname(rs.getString("fname"));
+				s.setLname(rs.getString("lname"));
+				s.setDob(rs.getDate("dob").toString());
+				s.setImage(rs.getString("image"));
+				s.setCreatedDate(rs.getDate("createdDate").toString());
+				s.setStatus(rs.getString("status"));
+				studentList.add(s);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return studentList;
+	}
+	
+	public static String getStandardById(id) {
+		String std;
+		try {
+			Connection conn = DBConnection.createConnection();
+			String sql = "SELECT name FROM standard WHERE id=?";
+			PreparedStatement pst = conn.prepareStatement(sql);
+			pst.setInt(1, id);
+			if(rs.next()) {
+				std = rs.getString("name");
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return std;
+	}
+}	
